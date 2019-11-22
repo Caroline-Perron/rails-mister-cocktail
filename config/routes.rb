@@ -3,6 +3,5 @@ Rails.application.routes.draw do
   # resources :ingredients do
   #   resources :doses, only: [ :description ]
   # ends :doses
-  resources :cocktails, only: [:index, :show, :create, :edit]
-  # pas edit
+  resources :cocktails, only: [:index, :create, :new, :show]
 end

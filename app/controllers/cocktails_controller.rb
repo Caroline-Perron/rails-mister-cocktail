@@ -4,17 +4,24 @@ class CocktailsController < ApplicationController
   end
 
   def create
-    @cocktails = Cocktail.new(name: params[:name])
-    @cocktails.save
+    @cocktail = Cocktail.new(cocktail_params)
+    if @cocktail.save
+      redirect_to cocktail_path(@cocktail)
+    else render :new
+    end
+  end
+
+  def new
+    @cocktail = Cocktail.new
   end
 
   def show
     @cocktail = Cocktail.find(params[:id])
   end
 
-  def edit
-    @cocktails = Cocktail.find(params[:id])
-  end
+  # def edit
+  #   @cocktails = Cocktail.find(params[:id])
+  # end
   # peut -etre pas ca
 
   # def update
@@ -26,4 +33,10 @@ class CocktailsController < ApplicationController
   #   @cocktails = Cocktail.find(params[:id])
   #   @cocktails.destroy
   # end
+
+  private
+
+  def cocktail_params
+    params.require(:cocktail).permit(:name)
+  end
 end

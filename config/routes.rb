@@ -3,5 +3,7 @@ Rails.application.routes.draw do
   # resources :ingredients do
   #   resources :doses, only: [ :description ]
   # ends :doses
-  resources :cocktails, only: [:index, :create, :new, :show]
+  resources :cocktails, only: [:index, :create, :new, :show] do
+    resources :doses, only: [:new, :create]
+  end
 end
